@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #ffc107;
+    height: 230px;
+}
+
+.marg{
+    margin: 1em auto;
+  }
+  
+#btn-xhr, #btn-fetch {
+    margin-top: 2%;
+}
+
+#response-container .card {
+    width: 55%;
+}
