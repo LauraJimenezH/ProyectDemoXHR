@@ -1,12 +1,11 @@
-window.addEventListener('load', function () {
-
+window.addEventListener('load', function() {
   const searchField = document.getElementById('search-keyword');
   const responseContainer = document.getElementById('response-container');
   const btnXhr = document.getElementById('btn-xhr');
   const btnFetch = document.getElementById('btn-fetch');
   let searchedForText;
 
-  btnXhr.addEventListener('click', function () {
+  btnXhr.addEventListener('click', function() {
     event.preventDefault();
     responseContainer.innerHTML = '';
     searchedForText = searchField.value;
@@ -16,7 +15,7 @@ window.addEventListener('load', function () {
   function getNews() {
     const articleRequest = new XMLHttpRequest();
 
-    articleRequest.onreadystatechange = function () {
+    articleRequest.onreadystatechange = function() {
       if (articleRequest.readyState === 4 && articleRequest.status === 200) {
         const data = JSON.parse(this.responseText);
         const response = data.response;
@@ -24,7 +23,6 @@ window.addEventListener('load', function () {
       } else {
         articleRequest.onerror = handleError;
       }
-
     };
     articleRequest.open('GET', `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=731e8751c28d400d85b0136cdf5d0d39`);
     articleRequest.send();
@@ -35,29 +33,29 @@ window.addEventListener('load', function () {
   }
 
 
-  btnFetch.addEventListener('click', function () {
+  btnFetch.addEventListener('click', function() {
     event.preventDefault();
     responseContainer.innerHTML = '';
     searchedForText = searchField.value;
     let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=731e8751c28d400d85b0136cdf5d0d39`;
     fetch(url)
-      .then(function (response) {
+      .then(function(response) {
         return response.json();
-      }).then(function (data) {
+      }).then(function(data) {
         const response = data.response;
         addNews(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   });
 
   function addNews(response) {
     let docs = response.docs;
-    docs.forEach(function (article) {
+    docs.forEach(function(article) {
       if (article.document_type === 'article') {
-        const newsDocs = 
-        `<div class="container justify-content-center marg card" >
+        const newsDocs =
+          `<div class="container justify-content-center marg card" >
           <div class="row card-body">
             <div class = "col-lg-3">
               <img width="100%" src="https://static01.nyt.com/${article.multimedia[0].url}">
@@ -73,5 +71,4 @@ window.addEventListener('load', function () {
       }
     });
   }
-
 });
