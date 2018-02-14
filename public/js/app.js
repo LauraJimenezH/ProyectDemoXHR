@@ -54,6 +54,7 @@ window.addEventListener('load', function() {
     let docs = response.docs;
     docs.forEach(function(article) {
       if (article.document_type === 'article') {
+        console.log(article)
         const newsDocs =
           `<div class="container justify-content-center marg card" >
           <div class="row card-body">
@@ -63,7 +64,7 @@ window.addEventListener('load', function() {
             <div class = "col-lg-9 col-12 ">
               <h3 class="card-title">${article.headline.main}</h3>
               <p class="card-text">${article.snippet}</p>
-              <a class="btn btn-primary text-light">More</a>
+              <a class="btn btn-primary text-light" href="${article.web_url}">More</a>
             </div>
           </div>
         </div>`;
