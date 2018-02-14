@@ -63,6 +63,7 @@ window.addEventListener('load', function() {
             <div class = "col-lg-9 col-12 ">
               <h3 class="card-title">${article.headline.main}</h3>
               <p class="card-text">${article.snippet}</p>
+              <a class="btn btn-primary text-light">More</a>
             </div>
           </div>
         </div>`;
